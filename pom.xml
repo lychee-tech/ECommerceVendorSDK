@@ -6,7 +6,7 @@
 
     <groupId>com.leechi</groupId>
     <artifactId>AmzAdvertisingSDK</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 
     <properties>
         <encoding>UTF-8</encoding>
@@ -14,22 +14,12 @@
         <jdk.version>1.8</jdk.version>
         <org.slf4j.version>1.7.5</org.slf4j.version>
         <commons.codec.version>1.4</commons.codec.version>
+        <github.global.server>github</github.global.server>
+        <project.version>1.0</project.version>
     </properties>
-
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.2.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
 
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
@@ -50,4 +40,59 @@
         </dependency>
 
     </dependencies>
+
+
+    <build>
+        <plugins>
+            <!--
+            <plugin>
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
+                <version>0.11</version>
+                <configuration>
+                    <message>Maven artifacts for ${project.version}</message>
+                    <noJekyll>true</noJekyll>
+                    <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
+                    <branch>refs/heads/mvn-repo</branch>
+                    <includes><include>**/*</include></includes>
+                    <repositoryName>MavenRepo</repositoryName>
+                    <repositoryOwner>wenhao888</repositoryOwner>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                        <phase>deploy</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            -->
+        </plugins>
+    </build>
+
+    <!--
+    <distributionManagement>
+        <repository>
+            <id>repo</id>
+            <url>https://github.com/wenhao888/MavenRepo/raw/master/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshot-repo</id>
+            <url>https://github.com/wenhao888/MavenRepo/raw/master/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+    -->
+
+    <distributionManagement>
+        <repository>
+            <id>myMavenRepo.write</id>
+            <url>https://mymavenrepo.com/repo/0brLpVhJzCl52uVoy7Kk/</url>
+        </repository>
+        <snapshotRepository>
+            <id>myMavenRepo.write</id>
+            <url>https://mymavenrepo.com/repo/0brLpVhJzCl52uVoy7Kk/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
 </project>
