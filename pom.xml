@@ -44,16 +44,23 @@
 
     <build>
         <plugins>
-            <!--
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.1</version>
+                <configuration>
+                    <altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>com.github.github</groupId>
                 <artifactId>site-maven-plugin</artifactId>
-                <version>0.11</version>
+                <version>0.12</version>
                 <configuration>
                     <message>Maven artifacts for ${project.version}</message>
                     <noJekyll>true</noJekyll>
                     <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
-                    <branch>refs/heads/mvn-repo</branch>
+                    <branch>refs/heads/master</branch>
                     <includes><include>**/*</include></includes>
                     <repositoryName>MavenRepo</repositoryName>
                     <repositoryOwner>wenhao888</repositoryOwner>
@@ -67,32 +74,18 @@
                     </execution>
                 </executions>
             </plugin>
-            -->
         </plugins>
     </build>
 
-    <!--
-    <distributionManagement>
-        <repository>
-            <id>repo</id>
-            <url>https://github.com/wenhao888/MavenRepo/raw/master/releases</url>
-        </repository>
-        <snapshotRepository>
-            <id>snapshot-repo</id>
-            <url>https://github.com/wenhao888/MavenRepo/raw/master/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
-    -->
 
     <distributionManagement>
         <repository>
-            <id>myMavenRepo.write</id>
-            <url>https://mymavenrepo.com/repo/0brLpVhJzCl52uVoy7Kk/</url>
+            <id>internal.repo</id>
+            <name>Temporary Staging Repository</name>
+            <url>file://${project.build.directory}/mvn-repo</url>
         </repository>
-        <snapshotRepository>
-            <id>myMavenRepo.write</id>
-            <url>https://mymavenrepo.com/repo/0brLpVhJzCl52uVoy7Kk/</url>
-        </snapshotRepository>
     </distributionManagement>
+
+
 
 </project>
