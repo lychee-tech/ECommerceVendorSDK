@@ -7,7 +7,7 @@ import com.leechi.vendorclient.querypreparer.AmzAdvertisingQueryPreparer;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import javax.xml.ws.WebServiceException;
-
+import java.math.BigInteger;
 
 
 public class AmzAdvertisingClientTest {
@@ -15,6 +15,26 @@ public class AmzAdvertisingClientTest {
     @Test
     public void testItemSearch() {
         ItemSearchRequest request = new ItemSearchRequest();
+        request.setItemPage(new BigInteger("1"));
+        request.setSearchIndex("Books");
+        request.setKeywords("Java");
+
+        final ItemSearch itemSearch = AmzAdvertisingQueryPreparer.prepareItemSearch(request);
+
+        ItemSearchResponse response = amzClient.invoke(new AmzAdvertisingInvoker<ItemSearchResponse>() {
+            public ItemSearchResponse invoke(AWSECommerceServicePortType port) throws WebServiceException {
+                return port.itemSearch(itemSearch);
+            }
+        });
+
+        assertNotNull(response);
+        assertTrue(response.getItems().size() > 0);
+    }
+
+    @Test
+    public void testItemSearchPaging() {
+        ItemSearchRequest request = new ItemSearchRequest();
+        request.setItemPage(new BigInteger("2"));
         request.setSearchIndex("Books");
         request.setKeywords("Java");
 
@@ -84,6 +104,26 @@ public class AmzAdvertisingClientTest {
         });
 
         assertNotNull(response);
+    }
+
+    @Test
+    public void testSimilarityLookup() {
+        SimilarityLookupRequest request = new SimilarityLookupRequest();
+        request.getItemId().add("B01N9GQSVA");
+
+        final SimilarityLookup similarityLookup = AmzAdvertisingQueryPreparer.prepareSimilarityLookup(request);
+
+
+        SimilarityLookupResponse response= amzClient.invoke(new AmzAdvertisingInvoker<SimilarityLookupResponse>() {
+            public SimilarityLookupResponse invoke(AWSECommerceServicePortType port) throws WebServiceException {
+                return port.similarityLookup(similarityLookup);
+            }
+        });
+
+        assertNotNull(response);
+        Object item = response.getItems().get(0).getItem().get(0);
+        assertNotNull(item);
+
     }
 
 
