@@ -1,25 +1,26 @@
-package com.leechi.advertising.client;
+package com.leechi.vendorclient.client;
 
 
 import com.amazon.advertising.jaxws.*;
-import com.leechi.advertising.request.RequestFactory;
+import com.leechi.vendorclient.Invoker.AmzAdvertisingInvoker;
+import com.leechi.vendorclient.querypreparer.AmzAdvertisingQueryPreparer;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import javax.xml.ws.WebServiceException;
 
 
 
-public class AmzClientTest {
-    private AmzClient amzClient = new AmzClient();
+public class AmzAdvertisingClientTest {
+    private AmzAdvertisingClient amzClient = ClientFactory.getAwsAdvertisingClient();
     @Test
     public void testItemSearch() {
         ItemSearchRequest request = new ItemSearchRequest();
         request.setSearchIndex("Books");
         request.setKeywords("Java");
 
-        final ItemSearch itemSearch = RequestFactory.makeItemSearch(request);
+        final ItemSearch itemSearch = AmzAdvertisingQueryPreparer.prepareItemSearch(request);
 
-        ItemSearchResponse response = amzClient.invoke(new WebServiceInvoker<ItemSearchResponse>() {
+        ItemSearchResponse response = amzClient.invoke(new AmzAdvertisingInvoker<ItemSearchResponse>() {
             public ItemSearchResponse invoke(AWSECommerceServicePortType port) throws WebServiceException {
                 return port.itemSearch(itemSearch);
             }
@@ -38,9 +39,9 @@ public class AmzClientTest {
         request.getItemId().add("B01N2XKCEX");
         request.getResponseGroup().add("Medium");
         request.getResponseGroup().add("BrowseNodes");
-        final ItemLookup itemLookup = RequestFactory.makeItemLookup(request);
+        final ItemLookup itemLookup = AmzAdvertisingQueryPreparer.prepareItemLookup(request);
 
-        ItemLookupResponse response= amzClient.invoke(new WebServiceInvoker<ItemLookupResponse>() {
+        ItemLookupResponse response= amzClient.invoke(new AmzAdvertisingInvoker<ItemLookupResponse>() {
             public ItemLookupResponse invoke(AWSECommerceServicePortType port) throws WebServiceException {
                 return port.itemLookup(itemLookup);
             }
@@ -60,8 +61,8 @@ public class AmzClientTest {
         BrowseNodeLookupRequest request = new BrowseNodeLookupRequest();
         request.getBrowseNodeId().add("3015418011");
 
-        final BrowseNodeLookup browseNodeLookup = RequestFactory.makeBrowseNodeLookup(request);
-        BrowseNodeLookupResponse response= amzClient.invoke(new WebServiceInvoker<BrowseNodeLookupResponse>() {
+        final BrowseNodeLookup browseNodeLookup = AmzAdvertisingQueryPreparer.prepareBrowseNodeLookup(request);
+        BrowseNodeLookupResponse response= amzClient.invoke(new AmzAdvertisingInvoker<BrowseNodeLookupResponse>() {
             public BrowseNodeLookupResponse invoke(AWSECommerceServicePortType port) throws WebServiceException {
                 return port.browseNodeLookup(browseNodeLookup);
             }
@@ -75,8 +76,8 @@ public class AmzClientTest {
         BrowseNodeLookupRequest request = new BrowseNodeLookupRequest();
         request.getBrowseNodeId().add("11548961011");
 
-        final BrowseNodeLookup browseNodeLookup = RequestFactory.makeBrowseNodeLookup(request);
-        BrowseNodeLookupResponse response= amzClient.invoke(new WebServiceInvoker<BrowseNodeLookupResponse>() {
+        final BrowseNodeLookup browseNodeLookup = AmzAdvertisingQueryPreparer.prepareBrowseNodeLookup(request);
+        BrowseNodeLookupResponse response= amzClient.invoke(new AmzAdvertisingInvoker<BrowseNodeLookupResponse>() {
             public BrowseNodeLookupResponse invoke(AWSECommerceServicePortType port) throws WebServiceException {
                 return port.browseNodeLookup(browseNodeLookup);
             }

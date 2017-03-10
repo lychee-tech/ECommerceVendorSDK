@@ -1,10 +1,11 @@
-package com.leechi.advertising.client;
+package com.leechi.vendorclient.client;
 
 
 import com.amazon.advertising.jaxws.AWSECommerceService;
 import com.amazon.advertising.jaxws.AWSECommerceServicePortType;
-import com.leechi.advertising.config.AppConfig;
-import com.leechi.advertising.handler.AwsHandlerResolver;
+import com.leechi.vendorclient.Invoker.AmzAdvertisingInvoker;
+import com.leechi.vendorclient.config.AppConfig;
+import com.leechi.vendorclient.handler.AwsHandlerResolver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,39 +15,39 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class AmzClient {
+public class AmzAdvertisingClient {
     private  AWSECommerceServicePortType port;
     private AppConfig config = AppConfig.singleton();
 
     private static final Logger logger = LoggerFactory
-            .getLogger(AmzClient.class);
+            .getLogger(AmzAdvertisingClient.class);
 
     private int retryCount = 3;
     private long retryInterval = 1000; // [msec]
     private static final Pattern HTTP_STATUS_PATTERN = Pattern
             .compile("status code ([0-9]{3})");
 
-    public AmzClient() {
+    public AmzAdvertisingClient() {
         AWSECommerceService service = new AWSECommerceService();
         service.setHandlerResolver(new AwsHandlerResolver(
-                config.getSecretAccessKey()));
+                config.getAwsAssociateSecret()));
         AWSECommerceServicePortType port = service
                 .getAWSECommerceServicePort();
         ((BindingProvider) port)
                 .getRequestContext()
                 .put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY,
-                        config.getEndpoint()
+                        config.getAwsAdvertisingUrl()
                                 + "/onca/soap?Service=AWSECommerceService");
         this.port = port;
     }
 
 
-    public <T> T invoke(WebServiceInvoker<T> invoker){
+    public <T> T invoke(AmzAdvertisingInvoker<T> invoker){
         return invokeWithRetry(invoker);
     }
 
 
-    private <T> T invokeWithRetry(WebServiceInvoker<T> invoker)
+    private <T> T invokeWithRetry(AmzAdvertisingInvoker<T> invoker)
             throws WebServiceException {
         int retry = 0;
         T result = null;

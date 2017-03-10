@@ -14,19 +14,19 @@
  * limitations under the License.
  */
 
-package com.leechi.advertising.config;
+package com.leechi.vendorclient.config;
 
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import java.util.Map;
 
-public class AwsConfig {
-    private static final String BUNDLE_NAME = "aws-config";
+public class ConfigParser {
+    private static final String BUNDLE_NAME = "app-config";
 
     private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle
             .getBundle(BUNDLE_NAME);
 
-    private AwsConfig() {
+    private ConfigParser() {
     }
 
     public static String getValue(String key) {

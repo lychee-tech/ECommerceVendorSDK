@@ -1,9 +1,9 @@
-package com.leechi.advertising.client;
+package com.leechi.vendorclient.Invoker;
 
 import com.amazon.advertising.jaxws.AWSECommerceServicePortType;
 
 import javax.xml.ws.WebServiceException;
 
-interface WebServiceInvoker<T> {
+public interface AmzAdvertisingInvoker<T> {
     T invoke(AWSECommerceServicePortType port) throws WebServiceException;
 }
