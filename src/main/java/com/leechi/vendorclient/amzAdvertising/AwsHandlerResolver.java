@@ -16,7 +16,7 @@
 /*
  * @author tlcdev @ https://forums.aws.amazon.com/thread.jspa?threadID=34600&tstart=0#141158
  */
-package com.leechi.vendorclient.handler;
+package com.leechi.vendorclient.amzAdvertising;
 
 import org.apache.commons.codec.binary.Base64;
 import org.w3c.dom.Element;

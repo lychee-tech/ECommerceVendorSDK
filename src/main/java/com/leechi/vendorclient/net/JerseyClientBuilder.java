@@ -20,11 +20,11 @@ import java.security.NoSuchAlgorithmException;
 
 
 public class JerseyClientBuilder {
-    private int jerseyClient_Read_Timeout=2000;
-    private int jerseyClient_Connect_Timeout =5000;
+    private int jerseyClient_Read_Timeout=1000*60*3;       //3 minutes
+    private int jerseyClient_Connect_Timeout =1000*60*1;   //1 minute
     private int connectionPool_max=2000;
     private int connectionPool_maxPerRoute=40;
-    private int idleConnection_Detect_Timeout= 1000*5;
+    private int idleConnection_Detect_Timeout= 1000*5;     //5 seconds
 
 
     public  Client build() throws NoSuchAlgorithmException, KeyManagementException{

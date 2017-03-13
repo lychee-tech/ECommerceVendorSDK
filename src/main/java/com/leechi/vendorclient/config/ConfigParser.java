@@ -21,15 +21,17 @@ import java.util.ResourceBundle;
 import java.util.Map;
 
 public class ConfigParser {
-    private static final String BUNDLE_NAME = "app-config";
+    private   ResourceBundle RESOURCE_BUNDLE = null;
 
-    private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle
-            .getBundle(BUNDLE_NAME);
-
-    private ConfigParser() {
+    public ConfigParser() {
     }
 
-    public static String getValue(String key) {
+    public void loadResourcePropertyFile(String fileName) {
+        RESOURCE_BUNDLE = ResourceBundle
+                .getBundle(fileName);
+    }
+
+    public String getValue(String key) {
         try {
             Map<String, String> variables= System.getenv();
             if (variables.containsKey(key)) {

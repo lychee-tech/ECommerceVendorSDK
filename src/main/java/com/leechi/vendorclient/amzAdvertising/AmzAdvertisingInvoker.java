@@ -1,4 +1,4 @@
-package com.leechi.vendorclient.Invoker;
+package com.leechi.vendorclient.amzAdvertising;
 
 import com.amazon.advertising.jaxws.AWSECommerceServicePortType;
 
