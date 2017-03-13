@@ -1,11 +1,8 @@
-package com.leechi.vendorclient.client;
+package com.leechi.vendorclient.amzAdvertising;
 
 
 import com.amazon.advertising.jaxws.AWSECommerceService;
 import com.amazon.advertising.jaxws.AWSECommerceServicePortType;
-import com.leechi.vendorclient.Invoker.AmzAdvertisingInvoker;
-import com.leechi.vendorclient.config.AppConfig;
-import com.leechi.vendorclient.handler.AwsHandlerResolver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,7 +14,6 @@ import java.util.regex.Pattern;
 
 public class AmzAdvertisingClient {
     private  AWSECommerceServicePortType port;
-    private AppConfig config = AppConfig.singleton();
 
     private static final Logger logger = LoggerFactory
             .getLogger(AmzAdvertisingClient.class);
@@ -27,16 +23,17 @@ public class AmzAdvertisingClient {
     private static final Pattern HTTP_STATUS_PATTERN = Pattern
             .compile("status code ([0-9]{3})");
 
-    public AmzAdvertisingClient() {
+
+    private AmzAdvertisingClient(String awsAssociateSecret, String awsAdvertisingUrl) {
         AWSECommerceService service = new AWSECommerceService();
         service.setHandlerResolver(new AwsHandlerResolver(
-                config.getAwsAssociateSecret()));
+                awsAssociateSecret));
         AWSECommerceServicePortType port = service
                 .getAWSECommerceServicePort();
         ((BindingProvider) port)
                 .getRequestContext()
                 .put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY,
-                        config.getAwsAdvertisingUrl()
+                        awsAdvertisingUrl
                                 + "/onca/soap?Service=AWSECommerceService");
         this.port = port;
     }
@@ -74,6 +71,31 @@ public class AmzAdvertisingClient {
             }
         }
         return result;
+    }
+
+    public static Builder builder(){
+        return new Builder();
+    }
+
+    public static class Builder {
+        private String associateSecret;
+        private String awsAdvertisingUrl;
+
+
+        public Builder setAwsAdvertisingUrl(String awsAdvertisingUrl) {
+            this.awsAdvertisingUrl = awsAdvertisingUrl;
+            return this;
+        }
+
+
+        public Builder setAssociateSecret(String associateSecret) {
+            this.associateSecret = associateSecret;
+            return this;
+        }
+
+        public AmzAdvertisingClient build () {
+            return new AmzAdvertisingClient(this.associateSecret, this.awsAdvertisingUrl);
+        }
     }
 
 
