@@ -1,4 +1,4 @@
-package com.leechi.vendorclient.client;
+package com.leechi.vendorclient.client.amzAdvertising;
 
 import com.amazon.advertising.jaxws.*;
 import com.leechi.vendorclient.amzAdvertising.AmzAdvertisingInvoker;
