@@ -1,8 +1,8 @@
 package com.leechi.vendorclient.amzMarket;
 
 
-import com.amazon.mws.order.MarketplaceWebServiceOrdersClient;
-import com.amazon.mws.order.MarketplaceWebServiceOrdersConfig;
+import com.amazon.mws.orders.MarketplaceWebServiceOrdersClient;
+import com.amazon.mws.orders.MarketplaceWebServiceOrdersConfig;
 
 public class AmzMarketOrderClientBuilder {
     private  String accessKey;

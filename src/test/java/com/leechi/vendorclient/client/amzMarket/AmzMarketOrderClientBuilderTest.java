@@ -1,8 +1,8 @@
 package com.leechi.vendorclient.client.amzMarket;
 
 
-import com.amazon.mws.order.MarketplaceWebServiceOrdersClient;
-import com.amazon.mws.order.model.*;
+import com.amazon.mws.orders.MarketplaceWebServiceOrdersClient;
+import com.amazon.mws.orders.model.*;
 import com.amazon.mws.shared.MwsUtl;
 import com.leechi.vendorclient.amzMarket.AmzMarketOrderClientBuilder;
 import com.leechi.vendorclient.config.ConfigParser;
