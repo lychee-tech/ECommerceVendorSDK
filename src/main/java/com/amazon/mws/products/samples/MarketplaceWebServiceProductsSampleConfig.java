@@ -37,7 +37,7 @@ public class MarketplaceWebServiceProductsSampleConfig {
     private static final String appVersion = "replaceWithAppVersion";
 
     /**
-     * The endpoint for region service and version.
+     * The endPoint for region service and version.
      * ex: serviceURL = MWSEndpoint.NA_PROD.toString();
      */
     private static final String serviceURL = "replaceWithServiceURL";

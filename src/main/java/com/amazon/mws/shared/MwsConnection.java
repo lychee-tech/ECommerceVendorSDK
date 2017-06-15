@@ -72,7 +72,7 @@ import org.apache.http.protocol.HttpContext;
 public class MwsConnection implements Cloneable, Closeable {
 
     /**
-     * Immutable service and version URI for an endpoint.
+     * Immutable service and version URI for an endPoint.
      * 
      * @author mayerj
      */
@@ -91,7 +91,7 @@ public class MwsConnection implements Cloneable, Closeable {
         final String version;
 
         /**
-         * Create a service endpoint.
+         * Create a service endPoint.
          * 
          * @param baseUri
          * @param servicePath
@@ -141,7 +141,7 @@ public class MwsConnection implements Cloneable, Closeable {
     /** Max async queue size before thread stealing. */
     private int maxAsyncQueueSize = 300;
 
-    /** Use endpoint URI. */
+    /** Use endPoint URI. */
     private URI endpoint = null;
 
     /** Custom executor service for async calls . */
@@ -387,7 +387,7 @@ public class MwsConnection implements Cloneable, Closeable {
      *            The service name and version as name/version, no leading or
      *            trailing slash.
      * 
-     * @return The service endpoint instance.
+     * @return The service endPoint instance.
      */
     ServiceEndpoint getServiceEndpoint(String servicePath) {
         synchronized (serviceMap) {
@@ -737,7 +737,7 @@ public class MwsConnection implements Cloneable, Closeable {
     }
 
     /**
-     * Sets service endpoint property.
+     * Sets service endPoint property.
      * 
      * @param endpoint
      *            The service end point URI.
@@ -982,7 +982,7 @@ public class MwsConnection implements Cloneable, Closeable {
      * Create a connection.
      * 
      * @param endpoint
-     *            The endpoint URI.
+     *            The endPoint URI.
      * 
      * @param applicationName
      *            The calling applications name.

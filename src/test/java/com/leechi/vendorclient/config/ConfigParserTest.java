@@ -29,7 +29,7 @@ public class ConfigParserTest {
 
     @Test
     public void testAdvertisingUrl(){
-        String url = parser.getValue(AmzAdvertisingProperties.endpint);
+        String url = parser.getValue(AmzAdvertisingProperties.endPoint);
         assertEquals("https://webservices.amazon.com", url);
     }
 

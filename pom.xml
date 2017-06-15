@@ -6,7 +6,7 @@
 
     <groupId>com.leechi</groupId>
     <artifactId>ECommerceVendorSDK</artifactId>
-    <version>3.0</version>
+    <version>4.0</version>
 
     <properties>
         <encoding>UTF-8</encoding>

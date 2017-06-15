@@ -24,8 +24,8 @@ public class AmzMarketOrderClientBuilderTest {
         parser.loadResourcePropertyFile("app-config");
         mwsAccessKeyId= parser.getValue("aws_mws_access");
         mwsSecrete = parser.getValue("aws_mws_secret");
-        mwsSellerId=parser.getValue("aws.mws.sellerId");
-        marketIds=parser.getValue("aws.mws.marketIds");
+        mwsSellerId=parser.getValue("aws_mws_sellerId");
+        marketIds=parser.getValue("aws_mws_marketIds");
         marketIdList =Arrays.asList(marketIds.split(","));
     }
 

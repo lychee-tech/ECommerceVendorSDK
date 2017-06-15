@@ -245,9 +245,9 @@ public class MarketplaceWebServiceOrdersConfig {
     }
 
     /**
-     * Gets the path appended after the endpoint
+     * Gets the path appended after the endPoint
      *
-     * @returns the path appended after the endpoint
+     * @returns the path appended after the endPoint
      */
     String getServicePath() {
         return servicePath;

@@ -54,7 +54,7 @@ class MwsAQCall implements MwsCall {
     /** Container for parameters. */
     private final Map<String, String> parameters = new TreeMap<String, String>();
 
-    /** The service endpoint from the servicePath. */
+    /** The service endPoint from the servicePath. */
     private final MwsConnection.ServiceEndpoint serviceEndpoint;
 
 
@@ -404,7 +404,7 @@ class MwsAQCall implements MwsCall {
      *            The connection to use to connect to the end-point.
      * 
      * @param serviceEndpoint
-     *            The service endpoint.
+     *            The service endPoint.
      * 
      * @param operationName
      *            The operation name.

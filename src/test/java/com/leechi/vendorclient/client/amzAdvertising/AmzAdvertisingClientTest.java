@@ -21,7 +21,7 @@ public class AmzAdvertisingClientTest {
     public static  void setup(){
         ConfigParser parser= new ConfigParser();
         parser.loadResourcePropertyFile("app-config");
-        String endPoint = parser.getValue(AmzAdvertisingProperties.endpint);
+        String endPoint = parser.getValue(AmzAdvertisingProperties.endPoint);
         String secret = parser.getValue(AmzAdvertisingProperties.secret);
         String accessKey = parser.getValue(AmzAdvertisingProperties.accessKeyId);
         String tag = parser.getValue(AmzAdvertisingProperties.tag);
